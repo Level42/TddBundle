@@ -142,6 +142,13 @@ class GeneratorService implements GeneratorInterface
             throw new FileAllreadyExistException($path);
         }
         
+        $directory = dirname($path);
+                
+        if (file_exists($directory) === false)
+        {
+            mkdir($directory, 0777, true);
+        }
+        
         return (file_put_contents($path, $class) !== false);  
     }
 
@@ -192,7 +199,7 @@ class GeneratorService implements GeneratorInterface
                     $className = $this->getFullNameClass($classFile);                     
                     if($className != null && $this->isTddEnableForClass($className)) 
                     {
-                        $result[$className] = $classFile;
+                        $result[$classFile] = $className;
                     }
                 }
             }

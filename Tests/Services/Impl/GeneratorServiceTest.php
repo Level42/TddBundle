@@ -9,6 +9,8 @@
  */
 namespace Level42\TddBundle\Tests\Services\Impl;
 
+use Level42\TddBundle\Tests\TestCase;
+
 use Level42\TddBundle\Exceptions\FileAllreadyExistException;
 
 use Symfony\Bundle\SwiftmailerBundle\DependencyInjection\Configuration;
@@ -23,14 +25,8 @@ use Level42\TddBundle\Services\GeneratorInterface;
  * 
  * @author fperinel
  */
-class GeneratorServiceTest extends \PHPUnit_Framework_TestCase
+class GeneratorServiceTest extends TestCase
 {
-    /**
-     * Service container
-     * @var Container
-     */
-    public $container;
-    
     /**
      * Generator service to test
      * @var GeneratorInterface
@@ -42,17 +38,13 @@ class GeneratorServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-    	$kernel = new AppKernel('test', true);
-    	$kernel->loadClassCache();
-    	$kernel->boot();
-    	$this->container = $kernel->getContainer();
-    	
-        $this->service = $this->container->get('level42.tdd.generator.service');
+        parent::__construct();
+        $this->service = $this->getContainer()->get('level42.tdd.generator.service');
     }
 
     public function testScanForClassToTest()
     {
-        $path = "./src/Level42/TddBundle";
+        $path = __DIR__."../../../";
         $result = $this->service->scanForClassToTest(str_replace('/', DIRECTORY_SEPARATOR, $path));
 
         $this->assertCount(2, $result, 'scanForClassToTest error');
@@ -79,8 +71,6 @@ class GeneratorServiceTest extends \PHPUnit_Framework_TestCase
         
         $testClass = $class;        
         $code = $this->service->generateTestClass($testClass, $result);
-
-        file_put_contents("d:\\test.php", $code);
         
         $this->assertEquals(2294, strlen($code), 'generateTestClass error');
     }   

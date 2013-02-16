@@ -1,7 +1,7 @@
 {
     "name": "Level42/tdd-generator-bundle",
     "description": "Bundle to generate test class for PhpUnit from bundles",
-    "version": "0.1-dev",
+    "version": "1.0-stable",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -24,7 +24,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"

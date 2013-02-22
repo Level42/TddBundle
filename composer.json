@@ -1,7 +1,7 @@
 {
     "name": "Level42/tdd-generator-bundle",
     "description": "Bundle to generate test class for PhpUnit from bundles",
-    "version": "1.0.0-stable",
+    "version": "1.0.1-stable",
     "autoload": {
         "psr-0": { "": "src/" }
     },

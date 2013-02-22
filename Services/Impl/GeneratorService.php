@@ -167,7 +167,7 @@ class GeneratorService implements GeneratorInterface
                 $classPath .= DIRECTORY_SEPARATOR.$part;
             }
         }
-        return str_replace("/", DIRECTORY_SEPARATOR, str_replace("\\", DIRECTORY_SEPARATOR, $classPath.'.php'));
+        return str_replace("/", DIRECTORY_SEPARATOR, str_replace("\\", DIRECTORY_SEPARATOR, $classPath.'Test.php'));
     }
     
     /**

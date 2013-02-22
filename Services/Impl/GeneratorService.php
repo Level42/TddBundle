@@ -300,7 +300,9 @@ class GeneratorService implements GeneratorInterface
     {
         $parts = explode("\\", $class);
         array_pop($parts);
-        return implode("\\", $parts);
+        $ns = implode("\\", $parts);
+        $ns = str_replace("Bundle", "Bundle\Tests", $ns);        
+        return $ns;
     }
 
     /**

@@ -96,11 +96,6 @@ class GeneratorService implements GeneratorInterface
      */
     public function generateTestClass($testClass, $testCases)
     {
-        /*$testClass = explode("\\", $testClass);
-        $className = $testClass[count($testClass) - 1];
-        unset($testClass[count($testClass) - 1]);
-        $namespace = implode("\\", $testClass);*/
-                
         $code = "";
         $code.= "<?php\n";
         $code.= "namespace ".$this->getTestNamespace($testClass).";\n";
@@ -277,8 +272,9 @@ class GeneratorService implements GeneratorInterface
             }
             
             /* @var $method \ReflectionMethod */
-            if (!$annotations = $this->reader->getMethodAnnotations($method)) {
-            	return array();
+            if (!$annotations = $this->reader->getMethodAnnotations($method)) 
+            {
+            	continue;
             }
             
             foreach($annotations as $annotation)
